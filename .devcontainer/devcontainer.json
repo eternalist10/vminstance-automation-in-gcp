@@ -5,8 +5,6 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/universal:5-linux",
 	"features": {
-		"ghcr.io/devcontainers-extra/features/terraform-asdf:2": {},
-		"ghcr.io/jajera/features/gcloud-cli:1": {}
 	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
