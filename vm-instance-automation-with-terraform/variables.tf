@@ -1,19 +1,16 @@
-variable project {
+variable project_id {
   type        = string
-  default     = ""
   description = "Project ID"
 }
 
 variable region {
   type        = string
-  
   description = "Region"
 }
 
 variable zone {
   type        = string
-  default     = ""
-  description = ""
+  description = "Zone"
 }
 
 
