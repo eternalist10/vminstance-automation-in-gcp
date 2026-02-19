@@ -1,16 +1,19 @@
-terraform {
-  required_version = ">= 1.5.0"
+module iam {
+  source = "./modules/iam"
+  project_id = var.project_id
 
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = "~> 5.0"
-    }
+  providers = {
+    google = google.impersonated
   }
 }
 
-provider "google" {
-  project = var.project_id
-  region  = var.region
-  zone    = var.zone
+data "google_service_account_access_token" "default" {
+  target_service_account = "my-service-account@${var.project_id}.iam.gserviceaccount.com"
+  scopes                 = ["userinfo-email", "cloud-platform"]
+  lifetime               = "3600s"
+}
+
+module compute {
+  source = "./modules/compute"
+  project_id = var.project_id
 }
