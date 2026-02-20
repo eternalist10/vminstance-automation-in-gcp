@@ -14,7 +14,7 @@ resource "google_project_iam_member" "admin-account-iam" {
     "roles/iam.serviceAccountCreator", # Primary role to create SAs
     "roles/iam.serviceAccountAdmin",   # Broad SA management
     "roles/iam.serviceAccountUser",     # To attach SAs to resources
-    "roles/iam.serviceAccountTokenCreator"  #to impersonate as another service account"
+    # "roles/iam.serviceAccountTokenCreator"  #to impersonate as another service account"
   ])
   
   project = var.project_id
@@ -29,13 +29,12 @@ resource "google_service_account" "sa_2" {
 
 resource "google_service_account_iam_member" "sa_2_roles" {
    for_each = toset([
-    "roles/iam.serviceAccountCreator",
-    "roles/iam.serviceAccountAdmin",
     "roles/iam.serviceAccountUser", 
-    "roles/iam.serviceAccountTokenCreator"
+    "roles/compute.instanceAdmin.v1",
+    "roles/workflows.invoker",
   ])
 
-  service_account_id = google_service_account.sa_2.account_id
+  service_account_id = google_service_account.sa_2.name
   role = each.value
   member = google_service_account.sa_2.email
 }

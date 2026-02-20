@@ -15,8 +15,8 @@ provider "google" {
   zone    = var.zone
 }
 
-provider "google" {
-  alias                       = "impersonated"
-  impersonate_service_account = "my-service-account@${var.project_id}.iam.gserviceaccount.com"
-  access_token = data.google_service_account_access_token.default.access_token
-}
+# provider "google" {
+#   alias                       = "impersonated"
+#   impersonate_service_account = "my-service-account@${var.project_id}.iam.gserviceaccount.com"
+#   access_token = data.google_service_account_access_token.default.access_token
+# }
